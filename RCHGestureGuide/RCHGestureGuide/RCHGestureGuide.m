@@ -7,6 +7,8 @@
 //
 
 #import "RCHGestureGuide.h"
+#import "RCHGestureGuideView.h"
+#import "RCHGestureGuideButton.h"
 #import <QuartzCore/QuartzCore.h>
 
 #define SCREEN_ANIMATION_DELAY 0.15
@@ -23,12 +25,19 @@ NSString *const RCHGestureRotate = @"RCHGestureRotate";
 {
   BOOL _isPresenting;
   BOOL _shouldCancelPresenting;
+  BOOL _shouldRestart;
   RCHGestureGuideBackdropType _backdropType;
+  UIDeviceOrientation _orientation;
 }
+@property (strong, nonatomic) UIView *view;
+@property (strong, nonatomic) UIView *applicationTopMostView;
 @property (strong, nonatomic) UIWindow *overlayWindow;
 @property (strong, nonatomic) UIButton *stopButton;
 @property (strong, nonatomic) NSString *interfaceKey;
+@property (strong, nonatomic) NSArray *requestedGestures;
 @property (strong, nonatomic) NSMutableArray *animations;
+
+@property (strong, nonatomic) UIImageView *currentGestureView;
 
 @end
 
@@ -39,9 +48,9 @@ NSString *const RCHGestureRotate = @"RCHGestureRotate";
 + (RCHGestureGuide *)shared
 {
   static dispatch_once_t once;
-  static RCHGestureGuide *sharedInstance;
-  dispatch_once(&once, ^ { sharedInstance = [[RCHGestureGuide alloc] initWithFrame:[[UIScreen mainScreen] bounds]]; });
-  return sharedInstance;
+  static RCHGestureGuide *shared;
+  dispatch_once(&once, ^ { shared = [[RCHGestureGuide alloc] init]; });
+  return shared;
 }
 
 + (void)showGestures:(NSArray *)gestures forKey:(NSString *)key
@@ -59,23 +68,82 @@ NSString *const RCHGestureRotate = @"RCHGestureRotate";
   [[RCHGestureGuide shared] cancel];
 }
 
+- (void)restart
+{
+  _shouldRestart = YES;
+  [self cancel];
+}
+
+- (void)willRestart
+{
+  _shouldRestart = NO;
+  [self showWithGestures:_requestedGestures forInterfaceKey:_interfaceKey];
+}
+
 #pragma mark - Instance Methods
 
-- (id)initWithFrame:(CGRect)frame
+- (id)init
 {
-  self = [super initWithFrame:frame];
+  self = [super init];
   if (self)
   {
-    self.userInteractionEnabled = YES;
-    self.backgroundColor = [UIColor clearColor];
-		self.alpha = 0;
-    self.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     _backdropType = RCHGestureGuideBackdropGradient;
     _shouldCancelPresenting = NO;
     _isPresenting = NO;
+    [self notifications];
   }
   return self;
 }
+
+#pragma mark - Notifications
+
+- (void)notifications
+{
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(orientationDidChange:) name:UIDeviceOrientationDidChangeNotification object:nil];
+}
+
+- (void)orientationDidChange:(NSNotification *)notification
+{
+  UIDeviceOrientation newOrientation = [[UIDevice currentDevice] orientation];
+  switch (newOrientation)
+  {
+    case UIDeviceOrientationUnknown:
+    case UIDeviceOrientationFaceDown:
+    case UIDeviceOrientationFaceUp:
+      // Do nothing
+      break;
+      
+    default:
+    {
+      if (_orientation != newOrientation)
+      {
+        _orientation = newOrientation;
+        [self restart];
+      }
+    }
+      break;
+  }
+}
+
+#pragma mark - Getters
+
+- (UIView *)applicationTopMostView
+{
+  if (_applicationTopMostView != nil) { return _applicationTopMostView; }
+  UIWindow *window = [[UIApplication sharedApplication] keyWindow];
+  UIViewController *viewController = [window rootViewController];
+  self.applicationTopMostView  = viewController.view;
+  return _applicationTopMostView;
+}
+
+- (UIView *)view
+{
+  if (_view != nil) { return _view; }
+  _view = [[RCHGestureGuideView alloc] initWithFrame:self.applicationTopMostView.bounds];
+  return _view;
+}
+
+#pragma mark - Actions
 
 - (void)reset
 {
@@ -88,12 +156,34 @@ NSString *const RCHGestureRotate = @"RCHGestureRotate";
   if (!_isPresenting) { return; }
   
   _shouldCancelPresenting = YES;
+  
+  [[_view layer] removeAllAnimations];
+  [_view removeFromSuperview];
+  [[_currentGestureView layer] removeAllAnimations];
+  if (!_shouldRestart)
+  {
+    _interfaceKey = nil;
+    _requestedGestures = nil;
+  }
 }
 
 - (void)cancelDidComplete
 {
   _shouldCancelPresenting = NO;
   _isPresenting = NO;
+  if (_shouldRestart)
+  {
+    [self willRestart];
+  }
+}
+
+- (void)dismiss
+{
+  [_view removeFromSuperview];
+  _view = nil;
+  _applicationTopMostView = nil;
+  _stopButton = nil;
+  _animations = nil;
 }
 
 - (void)showWithGestures:(NSArray *)gestures forInterfaceKey:(NSString *)key
@@ -103,33 +193,33 @@ NSString *const RCHGestureRotate = @"RCHGestureRotate";
   if (![self shouldShowGesturesForKey:key]) { return; }
   
   self.interfaceKey = key;
+  self.requestedGestures = gestures;
   
   _isPresenting = YES;
   
   dispatch_async(dispatch_get_main_queue(), ^{
     
-    if(!self.superview) {
+    if(!self.view.superview) {
       
-      [self.overlayWindow addSubview:self];
+      [self.applicationTopMostView addSubview:_view];
     }
-    [self.overlayWindow makeKeyAndVisible];
-    [self.overlayWindow setHidden:NO];
+    [self.applicationTopMostView setHidden:NO];
     [self.stopButton setHidden:NO];
     
-    if(self.alpha != 1) {
+    if(_view.alpha != 1) {
       
       [UIView animateWithDuration:SCREEN_ANIMATION_DELAY delay:0 options:UIViewAnimationOptionAllowUserInteraction | UIViewAnimationCurveEaseOut | UIViewAnimationOptionBeginFromCurrentState animations:^{
         
-        self.alpha = 1;
+        _view.alpha = 1;
         
       } completion:^(BOOL finished){
         
-        [self animateGestures:gestures];
+        [self animateGestures:_requestedGestures];
         
       }];
     }
     
-    [self setNeedsDisplay];
+    [_view setNeedsDisplay];
   });
 }
 
@@ -153,14 +243,15 @@ NSString *const RCHGestureRotate = @"RCHGestureRotate";
         [self animateGestures:nil];
       }
       else {
-        [self cancelDidComplete];
         [self performSelector:@selector(dismiss) withObject:nil afterDelay:0.0f];
+        [self cancelDidComplete];
       }
       
     }];
     return;
   }
   [self performSelector:@selector(dismiss) withObject:nil afterDelay:0.0f];
+  [self cancelDidComplete];
 }
 
 - (void)showGestureForKey:(NSString *)key withCompletion:(void (^)(BOOL finished))completion
@@ -168,21 +259,21 @@ NSString *const RCHGestureRotate = @"RCHGestureRotate";
   dispatch_async(dispatch_get_main_queue(), ^{
 
     UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png",key]];
-    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, image.size.width, image.size.height)];
-    [imageView setImage:image];
-    [imageView setCenter:CGPointMake(self.frame.size.width / 2, self.frame.size.height / 2)];
-    [[imageView layer] setOpacity:0.0f];
-    [self addSubview:imageView];
+    self.currentGestureView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, image.size.width, image.size.height)];
+    [_currentGestureView setImage:image];
+    [_currentGestureView setCenter:CGPointMake(_view.frame.size.width / 2, _view.frame.size.height / 2)];
+    [[_currentGestureView layer] setOpacity:0.0f];
+    [_view addSubview:_currentGestureView];
     
     [UIView animateWithDuration:GESTURE_ANIMATION_DURATION_FADE_IN delay:0.0f options:UIViewAnimationCurveEaseOut | UIViewAnimationOptionBeginFromCurrentState animations:^{
       
-      [[imageView layer] setOpacity:1.0f];
+      [[_currentGestureView layer] setOpacity:1.0f];
       
     } completion:^(BOOL finished) {
       
       [UIView animateWithDuration:GESTURE_ANIMATION_DURATION_FADE_OUT delay:GESTURE_ON_SCREEN options:UIViewAnimationCurveEaseOut | UIViewAnimationOptionBeginFromCurrentState animations:^{
         
-        [[imageView layer] setOpacity:0.0f];
+        [[_currentGestureView layer] setOpacity:0.0f];
         
       } completion:^(BOOL finished) {
         
@@ -195,92 +286,21 @@ NSString *const RCHGestureRotate = @"RCHGestureRotate";
   });
 }
 
-- (void)dismiss
-{  
-  [[self layer] removeAllAnimations];
-  [self setAlpha:0.0f];
-  [self setInterfaceKey:nil];
-  [self setAnimations:nil];
-  [self.overlayWindow setHidden:YES];
-  
-  if (!_shouldCancelPresenting) {
-    [self cancelDidComplete];
-  }
-}
-
-- (void)drawRect:(CGRect)rect
-{
-  CGContextRef context = UIGraphicsGetCurrentContext();
-  
-  switch (_backdropType)
-  {
-    case RCHGestureGuideBackdropBlack:
-    {
-      [[UIColor colorWithWhite:0 alpha:0.5] set];
-      CGContextFillRect(context, self.bounds);
-      break;
-    }
-    case RCHGestureGuideBackdropGradient:
-    {  
-      size_t locationsCount = 2;
-      CGFloat locations[2] = {0.0f, 1.0f};
-      CGFloat colors[8] = {0.0f,0.0f,0.0f,0.0f,0.0f,0.0f,0.0f,0.75f};
-      CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
-      CGGradientRef gradient = CGGradientCreateWithColorComponents(colorSpace, colors, locations, locationsCount);
-      CGColorSpaceRelease(colorSpace);
-      
-      CGPoint center = CGPointMake(self.bounds.size.width/2, self.bounds.size.height/2);
-      float radius = MIN(self.bounds.size.width , self.bounds.size.height) ;
-      CGContextDrawRadialGradient (context, gradient, center, 0, center, radius, kCGGradientDrawsAfterEndLocation);
-      CGGradientRelease(gradient);
-      
-      break;
-    }
-     case RCHGestureGuideBackdropNone:
-      break;
-  }
-}
-
 #pragma mark - Getters
-
-- (UIWindow *)overlayWindow
-{
-  if(_overlayWindow != nil) { return _overlayWindow; }
-  
-  self.overlayWindow = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-  _overlayWindow.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-  _overlayWindow.backgroundColor = [UIColor clearColor];
-  _overlayWindow.userInteractionEnabled = YES;
-  
-  return _overlayWindow;
-}
 
 - (UIButton *)stopButton
 {  
   if (_stopButton != nil) { return _stopButton; }
-
-  self.stopButton = [[UIButton alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 280.0f, 40.0f)];
-  [_stopButton setBackgroundColor:[UIColor blackColor]];
-  [[_stopButton titleLabel] setFont:[UIFont boldSystemFontOfSize:12.0f]];
-  [[_stopButton titleLabel] setTextAlignment:NSTextAlignmentCenter];
-  [_stopButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-  [_stopButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateHighlighted];
-  [_stopButton setTitle:@"Stop showing these gestures" forState:UIControlStateNormal];
-  [_stopButton setCenter:CGPointMake(self.frame.size.width / 2, (self.frame.size.height - (_stopButton.frame.size.height * 1)))];
-  [_stopButton addTarget:self action:@selector(stopAction:) forControlEvents:UIControlEventTouchUpInside];
-  [[_stopButton layer] setCornerRadius:5.0f];
-  [_stopButton setClipsToBounds:YES];
-  if(!_stopButton.superview) {
-    [self addSubview:_stopButton];
-  }
   
+  self.stopButton = [[RCHGestureGuideButton alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 280.0f, 40.0f)];
+  [_stopButton setCenter:CGPointMake(_view.frame.size.width / 2, (_view.frame.size.height - (_stopButton.frame.size.height * 1)))];
+  [_stopButton addTarget:self action:@selector(stopAction:) forControlEvents:UIControlEventTouchUpInside];
+  [_view addSubview:_stopButton];
   return _stopButton;
 }
 
 - (BOOL)shouldShowGesturesForKey:(NSString *)key
-{  
-  if (_interfaceKey) { return NO; }
-  
+{ 
   NSMutableDictionary *settings = [[NSUserDefaults standardUserDefaults] objectForKey:RCHGestureGuideDefaults];
   if (!settings) {
     return YES;

@@ -18,13 +18,12 @@ typedef enum {
 } RCHGestureGuideBackdropType;
 
 
-
 extern NSString *const RCHGesturePinch;
 extern NSString *const RCHGestureDrag;
 extern NSString *const RCHGestureTap;
 extern NSString *const RCHGestureRotate;
 
-@interface RCHGestureGuide : UIView
+@interface RCHGestureGuide : NSObject
 
 + (void)showGestures:(NSArray *)gestures forKey:(NSString *)key;
 

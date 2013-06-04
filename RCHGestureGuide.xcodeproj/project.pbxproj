@@ -33,6 +33,8 @@
 		9318F70A175DE91900003DF3 /* RCHGestureTap.png in Resources */ = {isa = PBXBuildFile; fileRef = 9318F700175DE91900003DF3 /* RCHGestureTap.png */; };
 		9318F70B175DE91900003DF3 /* RCHGestureTap@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9318F701175DE91900003DF3 /* RCHGestureTap@2x.png */; };
 		9318F70C175DE91900003DF3 /* RCHGestureGuide.m in Sources */ = {isa = PBXBuildFile; fileRef = 9318F703175DE91900003DF3 /* RCHGestureGuide.m */; };
+		9318F710175E174900003DF3 /* RCHGestureGuideView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9318F70F175E174900003DF3 /* RCHGestureGuideView.m */; };
+		9318F713175E182900003DF3 /* RCHGestureGuideButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 9318F712175E182900003DF3 /* RCHGestureGuideButton.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +81,10 @@
 		9318F701175DE91900003DF3 /* RCHGestureTap@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "RCHGestureTap@2x.png"; sourceTree = "<group>"; };
 		9318F702175DE91900003DF3 /* RCHGestureGuide.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCHGestureGuide.h; sourceTree = "<group>"; };
 		9318F703175DE91900003DF3 /* RCHGestureGuide.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCHGestureGuide.m; sourceTree = "<group>"; };
+		9318F70E175E174900003DF3 /* RCHGestureGuideView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCHGestureGuideView.h; sourceTree = "<group>"; };
+		9318F70F175E174900003DF3 /* RCHGestureGuideView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCHGestureGuideView.m; sourceTree = "<group>"; };
+		9318F711175E182900003DF3 /* RCHGestureGuideButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCHGestureGuideButton.h; sourceTree = "<group>"; };
+		9318F712175E182900003DF3 /* RCHGestureGuideButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCHGestureGuideButton.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -187,6 +193,7 @@
 			isa = PBXGroup;
 			children = (
 				9318F6F9175DE91900003DF3 /* Images */,
+				9318F70D175E172700003DF3 /* Core */,
 				9318F702175DE91900003DF3 /* RCHGestureGuide.h */,
 				9318F703175DE91900003DF3 /* RCHGestureGuide.m */,
 			);
@@ -205,6 +212,18 @@
 				9318F700175DE91900003DF3 /* RCHGestureTap.png */,
 				9318F701175DE91900003DF3 /* RCHGestureTap@2x.png */,
 			);
+			path = Images;
+			sourceTree = "<group>";
+		};
+		9318F70D175E172700003DF3 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				9318F70E175E174900003DF3 /* RCHGestureGuideView.h */,
+				9318F70F175E174900003DF3 /* RCHGestureGuideView.m */,
+				9318F711175E182900003DF3 /* RCHGestureGuideButton.h */,
+				9318F712175E182900003DF3 /* RCHGestureGuideButton.m */,
+			);
+			name = Core;
 			path = Images;
 			sourceTree = "<group>";
 		};
@@ -332,6 +351,8 @@
 				9318F6CB175DE8CE00003DF3 /* RCHAppDelegate.m in Sources */,
 				9318F6D4175DE8CE00003DF3 /* RCHViewController.m in Sources */,
 				9318F70C175DE91900003DF3 /* RCHGestureGuide.m in Sources */,
+				9318F710175E174900003DF3 /* RCHGestureGuideView.m in Sources */,
+				9318F713175E182900003DF3 /* RCHGestureGuideButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
