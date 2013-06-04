@@ -9,5 +9,10 @@
 #import <UIKit/UIKit.h>
 
 @interface RCHViewController : UIViewController
+{
+  IBOutlet UIButton *showGestureGuideButton;
+}
+
+- (IBAction)showGestureGuideButtonAction:(id)sender;
 
 @end

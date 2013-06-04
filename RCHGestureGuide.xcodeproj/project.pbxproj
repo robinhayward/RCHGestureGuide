@@ -24,6 +24,15 @@
 		9318F6E4175DE8CF00003DF3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9318F6BC175DE8CE00003DF3 /* Foundation.framework */; };
 		9318F6EC175DE8CF00003DF3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9318F6EA175DE8CF00003DF3 /* InfoPlist.strings */; };
 		9318F6EF175DE8CF00003DF3 /* RCHGestureGuideTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9318F6EE175DE8CF00003DF3 /* RCHGestureGuideTests.m */; };
+		9318F704175DE91900003DF3 /* RCHGestureDrag.png in Resources */ = {isa = PBXBuildFile; fileRef = 9318F6FA175DE91900003DF3 /* RCHGestureDrag.png */; };
+		9318F705175DE91900003DF3 /* RCHGestureDrag@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9318F6FB175DE91900003DF3 /* RCHGestureDrag@2x.png */; };
+		9318F706175DE91900003DF3 /* RCHGesturePinch.png in Resources */ = {isa = PBXBuildFile; fileRef = 9318F6FC175DE91900003DF3 /* RCHGesturePinch.png */; };
+		9318F707175DE91900003DF3 /* RCHGesturePinch@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9318F6FD175DE91900003DF3 /* RCHGesturePinch@2x.png */; };
+		9318F708175DE91900003DF3 /* RCHGestureRotate.png in Resources */ = {isa = PBXBuildFile; fileRef = 9318F6FE175DE91900003DF3 /* RCHGestureRotate.png */; };
+		9318F709175DE91900003DF3 /* RCHGestureRotate@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9318F6FF175DE91900003DF3 /* RCHGestureRotate@2x.png */; };
+		9318F70A175DE91900003DF3 /* RCHGestureTap.png in Resources */ = {isa = PBXBuildFile; fileRef = 9318F700175DE91900003DF3 /* RCHGestureTap.png */; };
+		9318F70B175DE91900003DF3 /* RCHGestureTap@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9318F701175DE91900003DF3 /* RCHGestureTap@2x.png */; };
+		9318F70C175DE91900003DF3 /* RCHGestureGuide.m in Sources */ = {isa = PBXBuildFile; fileRef = 9318F703175DE91900003DF3 /* RCHGestureGuide.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +69,16 @@
 		9318F6EB175DE8CF00003DF3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		9318F6ED175DE8CF00003DF3 /* RCHGestureGuideTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RCHGestureGuideTests.h; sourceTree = "<group>"; };
 		9318F6EE175DE8CF00003DF3 /* RCHGestureGuideTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RCHGestureGuideTests.m; sourceTree = "<group>"; };
+		9318F6FA175DE91900003DF3 /* RCHGestureDrag.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RCHGestureDrag.png; sourceTree = "<group>"; };
+		9318F6FB175DE91900003DF3 /* RCHGestureDrag@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "RCHGestureDrag@2x.png"; sourceTree = "<group>"; };
+		9318F6FC175DE91900003DF3 /* RCHGesturePinch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RCHGesturePinch.png; sourceTree = "<group>"; };
+		9318F6FD175DE91900003DF3 /* RCHGesturePinch@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "RCHGesturePinch@2x.png"; sourceTree = "<group>"; };
+		9318F6FE175DE91900003DF3 /* RCHGestureRotate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RCHGestureRotate.png; sourceTree = "<group>"; };
+		9318F6FF175DE91900003DF3 /* RCHGestureRotate@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "RCHGestureRotate@2x.png"; sourceTree = "<group>"; };
+		9318F700175DE91900003DF3 /* RCHGestureTap.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RCHGestureTap.png; sourceTree = "<group>"; };
+		9318F701175DE91900003DF3 /* RCHGestureTap@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "RCHGestureTap@2x.png"; sourceTree = "<group>"; };
+		9318F702175DE91900003DF3 /* RCHGestureGuide.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCHGestureGuide.h; sourceTree = "<group>"; };
+		9318F703175DE91900003DF3 /* RCHGestureGuide.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCHGestureGuide.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +138,7 @@
 		9318F6C0175DE8CE00003DF3 /* RCHGestureGuide */ = {
 			isa = PBXGroup;
 			children = (
+				9318F6F8175DE91900003DF3 /* RCHGestureGuide */,
 				9318F6C9175DE8CE00003DF3 /* RCHAppDelegate.h */,
 				9318F6CA175DE8CE00003DF3 /* RCHAppDelegate.m */,
 				9318F6D2175DE8CE00003DF3 /* RCHViewController.h */,
@@ -161,6 +181,31 @@
 				9318F6EA175DE8CF00003DF3 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		9318F6F8175DE91900003DF3 /* RCHGestureGuide */ = {
+			isa = PBXGroup;
+			children = (
+				9318F6F9175DE91900003DF3 /* Images */,
+				9318F702175DE91900003DF3 /* RCHGestureGuide.h */,
+				9318F703175DE91900003DF3 /* RCHGestureGuide.m */,
+			);
+			path = RCHGestureGuide;
+			sourceTree = "<group>";
+		};
+		9318F6F9175DE91900003DF3 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				9318F6FA175DE91900003DF3 /* RCHGestureDrag.png */,
+				9318F6FB175DE91900003DF3 /* RCHGestureDrag@2x.png */,
+				9318F6FC175DE91900003DF3 /* RCHGesturePinch.png */,
+				9318F6FD175DE91900003DF3 /* RCHGesturePinch@2x.png */,
+				9318F6FE175DE91900003DF3 /* RCHGestureRotate.png */,
+				9318F6FF175DE91900003DF3 /* RCHGestureRotate@2x.png */,
+				9318F700175DE91900003DF3 /* RCHGestureTap.png */,
+				9318F701175DE91900003DF3 /* RCHGestureTap@2x.png */,
+			);
+			path = Images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -241,6 +286,14 @@
 				9318F6D1175DE8CE00003DF3 /* Default-568h@2x.png in Resources */,
 				9318F6D7175DE8CE00003DF3 /* RCHViewController_iPhone.xib in Resources */,
 				9318F6DA175DE8CE00003DF3 /* RCHViewController_iPad.xib in Resources */,
+				9318F704175DE91900003DF3 /* RCHGestureDrag.png in Resources */,
+				9318F705175DE91900003DF3 /* RCHGestureDrag@2x.png in Resources */,
+				9318F706175DE91900003DF3 /* RCHGesturePinch.png in Resources */,
+				9318F707175DE91900003DF3 /* RCHGesturePinch@2x.png in Resources */,
+				9318F708175DE91900003DF3 /* RCHGestureRotate.png in Resources */,
+				9318F709175DE91900003DF3 /* RCHGestureRotate@2x.png in Resources */,
+				9318F70A175DE91900003DF3 /* RCHGestureTap.png in Resources */,
+				9318F70B175DE91900003DF3 /* RCHGestureTap@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -278,6 +331,7 @@
 				9318F6C7175DE8CE00003DF3 /* main.m in Sources */,
 				9318F6CB175DE8CE00003DF3 /* RCHAppDelegate.m in Sources */,
 				9318F6D4175DE8CE00003DF3 /* RCHViewController.m in Sources */,
+				9318F70C175DE91900003DF3 /* RCHGestureGuide.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,23 +7,25 @@
 //
 
 #import "RCHViewController.h"
-
-@interface RCHViewController ()
-
-@end
+#import "RCHGestureGuide.h"
 
 @implementation RCHViewController
 
-- (void)viewDidLoad
+- (void)viewDidAppear:(BOOL)animated
 {
-    [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+  [super viewDidAppear:animated];
+  [self showGestureGuide];
 }
 
-- (void)didReceiveMemoryWarning
+- (void)showGestureGuide
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+  [RCHGestureGuide showGestures:@[RCHGesturePinch, RCHGestureDrag, RCHGestureRotate, RCHGestureTap] forKey:@"Home"];
+}
+
+- (IBAction)showGestureGuideButtonAction:(id)sender
+{
+  [RCHGestureGuide reset];
+  [self showGestureGuide];
 }
 
 @end
