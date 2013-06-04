@@ -9,6 +9,11 @@
 #import "RCHGestureGuide.h"
 #import <QuartzCore/QuartzCore.h>
 
+#define SCREEN_ANIMATION_DELAY 0.15
+#define GESTURE_ON_SCREEN 1.25f
+#define GESTURE_ANIMATION_DURATION_FADE_IN 0.3
+#define GESTURE_ANIMATION_DURATION_FADE_OUT 0.2
+
 NSString *const RCHGesturePinch = @"RCHGesturePinch";
 NSString *const RCHGestureDrag = @"RCHGestureDrag";
 NSString *const RCHGestureTap = @"RCHGestureTap";
@@ -23,6 +28,7 @@ NSString *const RCHGestureRotate = @"RCHGestureRotate";
 @property (strong, nonatomic) UIWindow *overlayWindow;
 @property (strong, nonatomic) UIButton *stopButton;
 @property (strong, nonatomic) NSString *interfaceKey;
+@property (strong, nonatomic) NSMutableArray *animations;
 
 @end
 
@@ -84,6 +90,12 @@ NSString *const RCHGestureRotate = @"RCHGestureRotate";
   _shouldCancelPresenting = YES;
 }
 
+- (void)cancelDidComplete
+{
+  _shouldCancelPresenting = NO;
+  _isPresenting = NO;
+}
+
 - (void)showWithGestures:(NSArray *)gestures forInterfaceKey:(NSString *)key
 {
   if (gestures == nil) { return; }
@@ -106,7 +118,7 @@ NSString *const RCHGestureRotate = @"RCHGestureRotate";
     
     if(self.alpha != 1) {
       
-      [UIView animateWithDuration:0.15 delay:0 options:UIViewAnimationOptionAllowUserInteraction | UIViewAnimationCurveEaseOut | UIViewAnimationOptionBeginFromCurrentState animations:^{
+      [UIView animateWithDuration:SCREEN_ANIMATION_DELAY delay:0 options:UIViewAnimationOptionAllowUserInteraction | UIViewAnimationCurveEaseOut | UIViewAnimationOptionBeginFromCurrentState animations:^{
         
         self.alpha = 1;
         
@@ -125,15 +137,25 @@ NSString *const RCHGestureRotate = @"RCHGestureRotate";
 
 - (void)animateGestures:(NSArray *)gestures
 {
-  NSMutableArray *mutableGestures = [NSMutableArray arrayWithArray:gestures];
-  NSInteger count = [mutableGestures count];
+  if (gestures != nil)
+  {
+    self.animations = [NSMutableArray arrayWithArray:gestures];
+  }
+  NSInteger count = [_animations count];
   if (count > 0)
   {
-    NSString *key = [mutableGestures objectAtIndex:0];
-    [self showGestureForKey:key withCompletion:^(BOOL finised) {
+    NSString *key = [_animations objectAtIndex:0];
+    [self showGestureForKey:key withCompletion:^(BOOL finished) {
       
-      [mutableGestures removeObjectAtIndex:0];
-      [self animateGestures:mutableGestures];
+      if (!_shouldCancelPresenting)
+      {
+        [_animations removeObjectAtIndex:0];
+        [self animateGestures:nil];
+      }
+      else {
+        [self cancelDidComplete];
+        [self performSelector:@selector(dismiss) withObject:nil afterDelay:0.0f];
+      }
       
     }];
     return;
@@ -152,13 +174,13 @@ NSString *const RCHGestureRotate = @"RCHGestureRotate";
     [[imageView layer] setOpacity:0.0f];
     [self addSubview:imageView];
     
-    [UIView animateWithDuration:0.4f delay:0.0f options:UIViewAnimationCurveEaseOut | UIViewAnimationOptionBeginFromCurrentState animations:^{
+    [UIView animateWithDuration:GESTURE_ANIMATION_DURATION_FADE_IN delay:0.0f options:UIViewAnimationCurveEaseOut | UIViewAnimationOptionBeginFromCurrentState animations:^{
       
       [[imageView layer] setOpacity:1.0f];
       
     } completion:^(BOOL finished) {
       
-      [UIView animateWithDuration:0.8f delay:1.5f options:UIViewAnimationCurveEaseOut | UIViewAnimationOptionBeginFromCurrentState animations:^{
+      [UIView animateWithDuration:GESTURE_ANIMATION_DURATION_FADE_OUT delay:GESTURE_ON_SCREEN options:UIViewAnimationCurveEaseOut | UIViewAnimationOptionBeginFromCurrentState animations:^{
         
         [[imageView layer] setOpacity:0.0f];
         
@@ -178,9 +200,12 @@ NSString *const RCHGestureRotate = @"RCHGestureRotate";
   [[self layer] removeAllAnimations];
   [self setAlpha:0.0f];
   [self setInterfaceKey:nil];
+  [self setAnimations:nil];
   [self.overlayWindow setHidden:YES];
-  _shouldCancelPresenting = NO;
-  _isPresenting = NO;
+  
+  if (!_shouldCancelPresenting) {
+    [self cancelDidComplete];
+  }
 }
 
 - (void)drawRect:(CGRect)rect
@@ -285,7 +310,7 @@ NSString *const RCHGestureRotate = @"RCHGestureRotate";
   [[NSUserDefaults standardUserDefaults] setObject:settings forKey:RCHGestureGuideDefaults];
   [[NSUserDefaults standardUserDefaults] synchronize];
   
-  [self dismiss];
+  [self cancel];
 }
 
 @end
