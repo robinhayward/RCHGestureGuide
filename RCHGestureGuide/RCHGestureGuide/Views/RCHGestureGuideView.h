@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "RCHGestureGuide.h"
+#import "RCHGestureGuideInterface.h"
 
 @interface RCHGestureGuideView : UIView
 

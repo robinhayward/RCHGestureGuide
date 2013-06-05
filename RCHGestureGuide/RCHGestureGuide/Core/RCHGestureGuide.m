@@ -16,6 +16,7 @@
 #define GESTURE_ANIMATION_DURATION_FADE_IN 0.3
 #define GESTURE_ANIMATION_DURATION_FADE_OUT 0.2
 
+NSString *const RCHGestureGuideDefaults = @"RCHGestureGuideDefaults";
 NSString *const RCHGesturePinch = @"RCHGesturePinch";
 NSString *const RCHGestureSwipe = @"RCHGestureSwipe";
 NSString *const RCHGestureSpread = @"RCHGestureSpread";
