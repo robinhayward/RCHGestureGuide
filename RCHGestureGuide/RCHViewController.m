@@ -19,7 +19,7 @@
 
 - (void)showGestureGuide
 {
-  [RCHGestureGuide showGestures:@[RCHGesturePinch, RCHGestureDrag, RCHGestureRotate, RCHGestureTap] forKey:@"Home"];
+  [RCHGestureGuide showGestures:@[RCHGesturePinch, RCHGestureSwipe, RCHGestureSpread, RCHGestureRotate, RCHGestureTap] forKey:@"Home"];
 }
 
 - (IBAction)showGestureGuideButtonAction:(id)sender

@@ -19,7 +19,8 @@ typedef enum {
 
 
 extern NSString *const RCHGesturePinch;
-extern NSString *const RCHGestureDrag;
+extern NSString *const RCHGestureSwipe;
+extern NSString *const RCHGestureSpread;
 extern NSString *const RCHGestureTap;
 extern NSString *const RCHGestureRotate;
 

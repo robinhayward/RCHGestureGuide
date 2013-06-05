@@ -25,8 +25,6 @@
 		9318F6EC175DE8CF00003DF3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9318F6EA175DE8CF00003DF3 /* InfoPlist.strings */; };
 		9318F6EF175DE8CF00003DF3 /* RCHGestureGuideTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9318F6EE175DE8CF00003DF3 /* RCHGestureGuideTests.m */; };
 		9318F726175E223400003DF3 /* RCHGestureGuide.m in Sources */ = {isa = PBXBuildFile; fileRef = 9318F717175E223400003DF3 /* RCHGestureGuide.m */; };
-		9318F727175E223400003DF3 /* RCHGestureDrag.png in Resources */ = {isa = PBXBuildFile; fileRef = 9318F719175E223400003DF3 /* RCHGestureDrag.png */; };
-		9318F728175E223400003DF3 /* RCHGestureDrag@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9318F71A175E223400003DF3 /* RCHGestureDrag@2x.png */; };
 		9318F729175E223400003DF3 /* RCHGesturePinch.png in Resources */ = {isa = PBXBuildFile; fileRef = 9318F71B175E223400003DF3 /* RCHGesturePinch.png */; };
 		9318F72A175E223400003DF3 /* RCHGesturePinch@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9318F71C175E223400003DF3 /* RCHGesturePinch@2x.png */; };
 		9318F72B175E223400003DF3 /* RCHGestureRotate.png in Resources */ = {isa = PBXBuildFile; fileRef = 9318F71D175E223400003DF3 /* RCHGestureRotate.png */; };
@@ -35,6 +33,10 @@
 		9318F72E175E223400003DF3 /* RCHGestureTap@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9318F720175E223400003DF3 /* RCHGestureTap@2x.png */; };
 		9318F72F175E223400003DF3 /* RCHGestureGuideButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 9318F723175E223400003DF3 /* RCHGestureGuideButton.m */; };
 		9318F730175E223400003DF3 /* RCHGestureGuideView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9318F725175E223400003DF3 /* RCHGestureGuideView.m */; };
+		933CABE2175F3E980066E217 /* RCHGestureSwipe.png in Resources */ = {isa = PBXBuildFile; fileRef = 933CABDE175F3E980066E217 /* RCHGestureSwipe.png */; };
+		933CABE3175F3E980066E217 /* RCHGestureSwipe@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 933CABDF175F3E980066E217 /* RCHGestureSwipe@2x.png */; };
+		933CABE4175F3E980066E217 /* RCHGestureSpread.png in Resources */ = {isa = PBXBuildFile; fileRef = 933CABE0175F3E980066E217 /* RCHGestureSpread.png */; };
+		933CABE5175F3E980066E217 /* RCHGestureSpread@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 933CABE1175F3E980066E217 /* RCHGestureSpread@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,8 +75,6 @@
 		9318F6EE175DE8CF00003DF3 /* RCHGestureGuideTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RCHGestureGuideTests.m; sourceTree = "<group>"; };
 		9318F716175E223400003DF3 /* RCHGestureGuide.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCHGestureGuide.h; sourceTree = "<group>"; };
 		9318F717175E223400003DF3 /* RCHGestureGuide.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCHGestureGuide.m; sourceTree = "<group>"; };
-		9318F719175E223400003DF3 /* RCHGestureDrag.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RCHGestureDrag.png; sourceTree = "<group>"; };
-		9318F71A175E223400003DF3 /* RCHGestureDrag@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "RCHGestureDrag@2x.png"; sourceTree = "<group>"; };
 		9318F71B175E223400003DF3 /* RCHGesturePinch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RCHGesturePinch.png; sourceTree = "<group>"; };
 		9318F71C175E223400003DF3 /* RCHGesturePinch@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "RCHGesturePinch@2x.png"; sourceTree = "<group>"; };
 		9318F71D175E223400003DF3 /* RCHGestureRotate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RCHGestureRotate.png; sourceTree = "<group>"; };
@@ -85,6 +85,10 @@
 		9318F723175E223400003DF3 /* RCHGestureGuideButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCHGestureGuideButton.m; sourceTree = "<group>"; };
 		9318F724175E223400003DF3 /* RCHGestureGuideView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCHGestureGuideView.h; sourceTree = "<group>"; };
 		9318F725175E223400003DF3 /* RCHGestureGuideView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCHGestureGuideView.m; sourceTree = "<group>"; };
+		933CABDE175F3E980066E217 /* RCHGestureSwipe.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RCHGestureSwipe.png; sourceTree = "<group>"; };
+		933CABDF175F3E980066E217 /* RCHGestureSwipe@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "RCHGestureSwipe@2x.png"; sourceTree = "<group>"; };
+		933CABE0175F3E980066E217 /* RCHGestureSpread.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RCHGestureSpread.png; sourceTree = "<group>"; };
+		933CABE1175F3E980066E217 /* RCHGestureSpread@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "RCHGestureSpread@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -211,8 +215,10 @@
 		9318F718175E223400003DF3 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				9318F719175E223400003DF3 /* RCHGestureDrag.png */,
-				9318F71A175E223400003DF3 /* RCHGestureDrag@2x.png */,
+				933CABDE175F3E980066E217 /* RCHGestureSwipe.png */,
+				933CABDF175F3E980066E217 /* RCHGestureSwipe@2x.png */,
+				933CABE0175F3E980066E217 /* RCHGestureSpread.png */,
+				933CABE1175F3E980066E217 /* RCHGestureSpread@2x.png */,
 				9318F71B175E223400003DF3 /* RCHGesturePinch.png */,
 				9318F71C175E223400003DF3 /* RCHGesturePinch@2x.png */,
 				9318F71D175E223400003DF3 /* RCHGestureRotate.png */,
@@ -312,14 +318,16 @@
 				9318F6D1175DE8CE00003DF3 /* Default-568h@2x.png in Resources */,
 				9318F6D7175DE8CE00003DF3 /* RCHViewController_iPhone.xib in Resources */,
 				9318F6DA175DE8CE00003DF3 /* RCHViewController_iPad.xib in Resources */,
-				9318F727175E223400003DF3 /* RCHGestureDrag.png in Resources */,
-				9318F728175E223400003DF3 /* RCHGestureDrag@2x.png in Resources */,
 				9318F729175E223400003DF3 /* RCHGesturePinch.png in Resources */,
 				9318F72A175E223400003DF3 /* RCHGesturePinch@2x.png in Resources */,
 				9318F72B175E223400003DF3 /* RCHGestureRotate.png in Resources */,
 				9318F72C175E223400003DF3 /* RCHGestureRotate@2x.png in Resources */,
 				9318F72D175E223400003DF3 /* RCHGestureTap.png in Resources */,
 				9318F72E175E223400003DF3 /* RCHGestureTap@2x.png in Resources */,
+				933CABE2175F3E980066E217 /* RCHGestureSwipe.png in Resources */,
+				933CABE3175F3E980066E217 /* RCHGestureSwipe@2x.png in Resources */,
+				933CABE4175F3E980066E217 /* RCHGestureSpread.png in Resources */,
+				933CABE5175F3E980066E217 /* RCHGestureSpread@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -550,6 +558,7 @@
 				9318F6F4175DE8CF00003DF3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		9318F6F5175DE8CF00003DF3 /* Build configuration list for PBXNativeTarget "RCHGestureGuideTests" */ = {
 			isa = XCConfigurationList;
@@ -558,6 +567,7 @@
 				9318F6F7175DE8CF00003DF3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

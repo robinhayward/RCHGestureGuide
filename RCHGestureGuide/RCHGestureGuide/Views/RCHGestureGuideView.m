@@ -31,7 +31,7 @@
   {
     case RCHGestureGuideBackdropBlack:
     {
-      [[UIColor colorWithWhite:0 alpha:0.5] set];
+      [[UIColor colorWithWhite:0 alpha:0.8] set];
       CGContextFillRect(context, self.bounds);
       break;
     }
@@ -39,13 +39,17 @@
     {
       size_t locationsCount = 2;
       CGFloat locations[2] = {0.0f, 1.0f};
-      CGFloat colors[8] = {0.0f,0.0f,0.0f,0.0f,0.0f,0.0f,0.0f,0.75f};
+      CGFloat colors[8] = {0.0f,0.0f,0.0f,0.0f,0.0f,0.0f,0.0f,0.8f};
       CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
       CGGradientRef gradient = CGGradientCreateWithColorComponents(colorSpace, colors, locations, locationsCount);
       CGColorSpaceRelease(colorSpace);
       
       CGPoint center = CGPointMake(self.bounds.size.width/2, self.bounds.size.height/2);
-      float radius = MIN(self.bounds.size.width , self.bounds.size.height) ;
+      float radius = MIN(self.bounds.size.width * 0.8, self.bounds.size.height * 0.8);
+      if ([self iPad])
+      {
+        radius = MIN(self.bounds.size.width * 0.7, self.bounds.size.height * 0.7);
+      }
       CGContextDrawRadialGradient (context, gradient, center, 0, center, radius, kCGGradientDrawsAfterEndLocation);
       CGGradientRelease(gradient);
       
@@ -54,6 +58,15 @@
     case RCHGestureGuideBackdropNone:
       break;
   }
+}
+
+- (BOOL)iPad
+{
+  NSString *model = [[UIDevice currentDevice] model];
+  if ([model isEqualToString:@"iPad"]) {
+    return YES;
+  }
+  return NO;
 }
 
 @end
