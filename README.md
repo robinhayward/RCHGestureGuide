@@ -1,7 +1,11 @@
 RCHGestureGuide
 ===============
 
-A tool to display gesture hints to your users on any screen or interface area of your application.
+A tool to display gesture hints to your users on any area of user interface area of your application.
+
+Allow the user to dismiss and remove guides for different areas of your applications and re-enable them on demand.
+
+Easily customize the icons and animations.
 
 ## Usage
 

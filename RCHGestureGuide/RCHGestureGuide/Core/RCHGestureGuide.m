@@ -87,6 +87,12 @@ NSString *const RCHGestureRotate = @"RCHGestureRotate";
     _backdropType = RCHGestureGuideBackdropGradient;
     _shouldCancelPresenting = NO;
     _isPresenting = NO;
+    _dismissButtonTitle = @"Stop showing these gestures";
+    _screenAnimationDelayDuration = 0.15f;
+    _gestureOnScreenDuration = 1.25f;
+    _gestureAnimationDurationIn = 0.3f;
+    _gestureAnimationDurationOut = 0.2f;
+    
     [self notifications];
   }
   return self;
@@ -205,7 +211,7 @@ NSString *const RCHGestureRotate = @"RCHGestureRotate";
     
     if(_view.alpha != 1) {
       
-      [UIView animateWithDuration:SCREEN_ANIMATION_DELAY delay:0 options:UIViewAnimationOptionAllowUserInteraction | UIViewAnimationCurveEaseOut | UIViewAnimationOptionBeginFromCurrentState animations:^{
+      [UIView animateWithDuration:_screenAnimationDelayDuration delay:0 options:UIViewAnimationOptionAllowUserInteraction | UIViewAnimationCurveEaseOut | UIViewAnimationOptionBeginFromCurrentState animations:^{
         
         _view.alpha = 1;
         
@@ -262,13 +268,13 @@ NSString *const RCHGestureRotate = @"RCHGestureRotate";
     [[_currentGestureView layer] setOpacity:0.0f];
     [_view addSubview:_currentGestureView];
     
-    [UIView animateWithDuration:GESTURE_ANIMATION_DURATION_FADE_IN delay:0.0f options:UIViewAnimationCurveEaseOut | UIViewAnimationOptionBeginFromCurrentState animations:^{
+    [UIView animateWithDuration:_gestureAnimationDurationIn delay:0.0f options:UIViewAnimationCurveEaseOut | UIViewAnimationOptionBeginFromCurrentState animations:^{
       
       [[_currentGestureView layer] setOpacity:1.0f];
       
     } completion:^(BOOL finished) {
       
-      [UIView animateWithDuration:GESTURE_ANIMATION_DURATION_FADE_OUT delay:GESTURE_ON_SCREEN options:UIViewAnimationCurveEaseOut | UIViewAnimationOptionBeginFromCurrentState animations:^{
+      [UIView animateWithDuration:_gestureAnimationDurationOut delay:_gestureOnScreenDuration options:UIViewAnimationCurveEaseOut | UIViewAnimationOptionBeginFromCurrentState animations:^{
         
         [[_currentGestureView layer] setOpacity:0.0f];
         
@@ -292,6 +298,7 @@ NSString *const RCHGestureRotate = @"RCHGestureRotate";
   self.stopButton = [[RCHGestureGuideButton alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 280.0f, 40.0f)];
   [_stopButton setCenter:CGPointMake(_view.frame.size.width / 2, (_view.frame.size.height - (_stopButton.frame.size.height * 1)))];
   [_stopButton addTarget:self action:@selector(stopAction:) forControlEvents:UIControlEventTouchUpInside];
+  [_stopButton setTitle:_dismissButtonTitle forState:UIControlStateNormal];
   [_view addSubview:_stopButton];
   return _stopButton;
 }

@@ -21,7 +21,6 @@
     [[self titleLabel] setTextAlignment:NSTextAlignmentCenter];
     [self setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self setTitleColor:[UIColor lightGrayColor] forState:UIControlStateHighlighted];
-    [self setTitle:@"Stop showing these gestures" forState:UIControlStateNormal];
     [[self layer] setCornerRadius:5.0f];
     [self setClipsToBounds:YES];
   }
