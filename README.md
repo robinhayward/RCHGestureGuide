@@ -19,6 +19,6 @@ If any designers out there want to create an icon set for me that can be shared 
 
 ## Contact
 
-<@robhayward>
+[@robhayward](http://www.twitter.com/robhayward) 
 
 <hello@robhayward.co.uk>
