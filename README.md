@@ -19,7 +19,7 @@ If any designers out there want to create an icon set for me that can be shared 
 
 ## Screenshot
 
-![No Internet Connection](https://raw.github.com/robinhayward/RCHGestureGuide/master/screenshots/screenshot.png
+![Showing Gestures](https://raw.github.com/robinhayward/RCHGestureGuide/master/screenshots/screenshot.png)
 
 ## Contact
 

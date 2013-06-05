@@ -323,7 +323,7 @@ NSString *const RCHGestureRotate = @"RCHGestureRotate";
   
   NSMutableDictionary *settings = [savedSettings mutableCopy];
   
-  [settings setObject:[NSNumber numberWithBool:NO] forKey:self.interfaceKey];
+  [settings setObject:[NSNumber numberWithBool:NO] forKey:_interfaceKey];
   [[NSUserDefaults standardUserDefaults] setObject:settings forKey:RCHGestureGuideDefaults];
   [[NSUserDefaults standardUserDefaults] synchronize];
   
