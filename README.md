@@ -17,6 +17,10 @@ The sample icons are from the free set at <MobileTuxedo.com>, you must not use t
 
 If any designers out there want to create an icon set for me that can be shared with this tool freely please get in touch.
 
+## Screenshot
+
+![No Internet Connection](https://github.com/robinhayward/RCHGestureGuide/raw/master/example/screenshot.png)
+
 ## Contact
 
 [@robhayward](http://www.twitter.com/robhayward) 

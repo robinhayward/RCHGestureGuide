@@ -65,11 +65,6 @@ NSString *const RCHGestureRotate = @"RCHGestureRotate";
   [[RCHGestureGuide shared] reset];
 }
 
-+ (void)cancel
-{
-  [[RCHGestureGuide shared] cancel];
-}
-
 - (void)restart
 {
   _shouldRestart = YES;
