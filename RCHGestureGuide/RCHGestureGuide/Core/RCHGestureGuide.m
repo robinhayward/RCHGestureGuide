@@ -84,18 +84,22 @@ NSString *const RCHGestureRotate = @"RCHGestureRotate";
   self = [super init];
   if (self)
   {
-    _backdropType = RCHGestureGuideBackdropGradient;
-    _shouldCancelPresenting = NO;
-    _isPresenting = NO;
-    _dismissButtonTitle = @"Stop showing these gestures";
-    _screenAnimationDelayDuration = 0.15f;
-    _gestureOnScreenDuration = 1.25f;
-    _gestureAnimationDurationIn = 0.3f;
-    _gestureAnimationDurationOut = 0.2f;
-    
+    [self defaults];
     [self notifications];
   }
   return self;
+}
+
+- (void)defaults
+{
+  _backdropType = RCHGestureGuideBackdropGradient;
+  _shouldCancelPresenting = NO;
+  _isPresenting = NO;
+  _dismissButtonTitle = @"Stop showing these gestures";
+  _screenAnimationDelayDuration = 0.15f;
+  _gestureOnScreenDuration = 1.25f;
+  _gestureAnimationDurationIn = 0.3f;
+  _gestureAnimationDurationOut = 0.2f;
 }
 
 #pragma mark - Notifications

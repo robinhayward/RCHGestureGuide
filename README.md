@@ -1,9 +1,9 @@
 RCHGestureGuide
 ===============
 
-A tool to display gesture hints to your users on any area of user interface area of your application.
+A tool to display gesture hints to your users on any area of user interface in your applications.
 
-Allow the user to dismiss and remove guides for different areas of your applications and re-enable them on demand.
+Allows the user to dismiss and remove guides for different areas and re-enable them on demand.
 
 Easily customize the icons and animations.
 
@@ -17,13 +17,18 @@ Easily customize the icons and animations.
 
 ## Icons
 
-The sample icons are from the free set at <MobileTuxedo.com>, you must not use these icons without contacting them for permission, always replace with your own icons for production.
+The sample icons are from the free set at [MobileTuxedo.com](http://mobiletuxedo.com), you must not use these icons without contacting them for permission, always replace with your own icons for production.
 
 If any designers out there want to create an icon set for me that can be shared with this tool freely please get in touch.
 
 ## Screenshot
 
 ![Showing Gestures](https://raw.github.com/robinhayward/RCHGestureGuide/master/screenshots/screenshot.png)
+
+## TODO
+
+* Update for Auto Layout
+* Fix a little bug when rotating, whichj Auto Layout will probably remedy
 
 ## Contact
 
