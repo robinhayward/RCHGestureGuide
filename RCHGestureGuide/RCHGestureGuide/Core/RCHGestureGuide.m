@@ -146,7 +146,7 @@ NSString *const RCHGestureRotate = @"RCHGestureRotate";
 - (UIView *)view
 {
   if (_view != nil) { return _view; }
-  _view = [[RCHGestureGuideView alloc] initWithFrame:self.applicationTopMostView.bounds];
+  _view = [[RCHGestureGuideView alloc] init];
   return _view;
 }
 
@@ -265,10 +265,10 @@ NSString *const RCHGestureRotate = @"RCHGestureRotate";
 {
   dispatch_async(dispatch_get_main_queue(), ^{
 
-    UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png",key]];
+    UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png", key]];
     self.currentGestureView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, image.size.width, image.size.height)];
     [_currentGestureView setImage:image];
-    [_currentGestureView setCenter:CGPointMake(_view.frame.size.width / 2, _view.frame.size.height / 2)];
+    [_currentGestureView setCenter:_view.center];
     [[_currentGestureView layer] setOpacity:0.0f];
     [_view addSubview:_currentGestureView];
     
@@ -299,8 +299,7 @@ NSString *const RCHGestureRotate = @"RCHGestureRotate";
 {  
   if (_stopButton != nil) { return _stopButton; }
   
-  self.stopButton = [[RCHGestureGuideButton alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 280.0f, 40.0f)];
-  [_stopButton setCenter:CGPointMake(_view.frame.size.width / 2, (_view.frame.size.height - (_stopButton.frame.size.height * 1)))];
+  self.stopButton = [[RCHGestureGuideButton alloc] init];
   [_stopButton addTarget:self action:@selector(stopAction:) forControlEvents:UIControlEventTouchUpInside];
   [_stopButton setTitle:_dismissButtonTitle forState:UIControlStateNormal];
   [_view addSubview:_stopButton];

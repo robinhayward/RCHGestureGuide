@@ -8,8 +8,17 @@
 
 #import "RCHViewController.h"
 #import "RCHGestureGuide.h"
+#import "RCHButton.h"
 
 @implementation RCHViewController
+
+- (void)viewDidLoad
+{
+  [super viewDidLoad];
+  self.button = [[RCHButton alloc] init];
+  [_button addTarget:self action:@selector(buttonAction) forControlEvents:UIControlEventTouchUpInside];
+  [self.view addSubview:_button];
+}
 
 - (void)viewDidAppear:(BOOL)animated
 {
@@ -22,7 +31,9 @@
   [RCHGestureGuide showGestures:@[RCHGesturePinch, RCHGestureSwipe, RCHGestureSpread, RCHGestureRotate, RCHGestureTap] forKey:@"Home"];
 }
 
-- (IBAction)showGestureGuideButtonAction:(id)sender
+#pragma mark - Action
+
+- (void)buttonAction
 {
   [RCHGestureGuide reset];
   [self showGestureGuide];

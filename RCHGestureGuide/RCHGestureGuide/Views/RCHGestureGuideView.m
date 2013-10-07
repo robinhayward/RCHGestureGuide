@@ -18,9 +18,18 @@
       self.userInteractionEnabled = YES;
       self.backgroundColor = [UIColor clearColor];
       self.alpha = 0;
-      self.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     }
     return self;
+}
+
+- (void)didMoveToSuperview
+{
+  [self setTranslatesAutoresizingMaskIntoConstraints:NO];
+  id a = [NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.superview attribute:NSLayoutAttributeCenterX multiplier:1 constant:0];
+  id b = [NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.superview attribute:NSLayoutAttributeCenterY multiplier:1 constant:0];
+  id c = [NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self.superview attribute:NSLayoutAttributeWidth multiplier:1 constant:0];
+  id d = [NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:self.superview attribute:NSLayoutAttributeHeight   multiplier:1 constant:0];
+  [self.superview addConstraints:@[a, b, c, d]];
 }
 
 - (void)drawRect:(CGRect)rect
