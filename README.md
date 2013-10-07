@@ -1,11 +1,16 @@
 RCHGestureGuide
 ===============
 
+# Updated
+
+* Small changes for Auto Layout and iOS 7
+
+
 A tool to display gesture hints to your users on any area of user interface in your applications.
 
 Allows the user to dismiss and remove guides for different areas and re-enable them on demand.
 
-Easily customize the icons and animations.
+Easily customise the icons and animations.
 
 ## Usage
 
@@ -24,11 +29,6 @@ If any designers out there want to create an icon set for me that can be shared 
 ## Screenshot
 
 ![Showing Gestures](https://raw.github.com/robinhayward/RCHGestureGuide/master/screenshots/screenshot.png)
-
-## TODO
-
-* Update for Auto Layout
-* Fix a little bug when rotating, whichj Auto Layout will probably remedy
 
 ## Contact
 
