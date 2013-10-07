@@ -10,11 +10,12 @@
 #import "RCHGestureGuideView.h"
 #import "RCHGestureGuideButton.h"
 #import <QuartzCore/QuartzCore.h>
+#import <AvailabilityMacros.h>
 
-#define SCREEN_ANIMATION_DELAY 0.15
-#define GESTURE_ON_SCREEN 1.25f
-#define GESTURE_ANIMATION_DURATION_FADE_IN 0.3
-#define GESTURE_ANIMATION_DURATION_FADE_OUT 0.2
+#define RCH_SCREEN_ANIMATION_DELAY 0.15
+#define RCH_GESTURE_ON_SCREEN 1.25
+#define RCH_GESTURE_ANIMATION_DURATION_FADE_IN 0.3
+#define RCH_GESTURE_ANIMATION_DURATION_FADE_OUT 0.2
 
 NSString *const RCHGestureGuideDefaults = @"RCHGestureGuideDefaults";
 NSString *const RCHGesturePinch = @"RCHGesturePinch";
@@ -31,6 +32,7 @@ NSString *const RCHGestureRotate = @"RCHGestureRotate";
   RCHGestureGuideBackdropType _backdropType;
   UIDeviceOrientation _orientation;
 }
+
 @property (strong, nonatomic) UIView *view;
 @property (strong, nonatomic) UIView *applicationTopMostView;
 @property (strong, nonatomic) UIWindow *overlayWindow;
@@ -38,7 +40,6 @@ NSString *const RCHGestureRotate = @"RCHGestureRotate";
 @property (strong, nonatomic) NSString *interfaceKey;
 @property (strong, nonatomic) NSArray *requestedGestures;
 @property (strong, nonatomic) NSMutableArray *animations;
-
 @property (strong, nonatomic) UIImageView *currentGestureView;
 
 @end
@@ -96,10 +97,10 @@ NSString *const RCHGestureRotate = @"RCHGestureRotate";
   _shouldCancelPresenting = NO;
   _isPresenting = NO;
   _dismissButtonTitle = @"Stop showing these gestures";
-  _screenAnimationDelayDuration = 0.15f;
-  _gestureOnScreenDuration = 1.25f;
-  _gestureAnimationDurationIn = 0.3f;
-  _gestureAnimationDurationOut = 0.2f;
+  _screenAnimationDelayDuration = RCH_SCREEN_ANIMATION_DELAY;
+  _gestureOnScreenDuration = RCH_GESTURE_ON_SCREEN;
+  _gestureAnimationDurationIn = RCH_GESTURE_ANIMATION_DURATION_FADE_IN;
+  _gestureAnimationDurationOut = RCH_GESTURE_ANIMATION_DURATION_FADE_OUT;
 }
 
 #pragma mark - Notifications
@@ -117,9 +118,7 @@ NSString *const RCHGestureRotate = @"RCHGestureRotate";
     case UIDeviceOrientationUnknown:
     case UIDeviceOrientationFaceDown:
     case UIDeviceOrientationFaceUp:
-      // Do nothing
       break;
-      
     default:
     {
       if (_orientation != newOrientation)

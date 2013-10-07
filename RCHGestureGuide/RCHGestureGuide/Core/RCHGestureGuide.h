@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <AvailabilityMacros.h>
 #import "RCHGestureGuideInterface.h"
 
 /**
@@ -22,11 +21,6 @@
 
 @interface RCHGestureGuide : NSObject
 
-/**
- 
- Properties to adjust the appearance and animations of the guide presentation
- 
-*/
 @property (strong, nonatomic) NSString *dismissButtonTitle;
 @property (assign, nonatomic) CGFloat screenAnimationDelayDuration;
 @property (assign, nonatomic) CGFloat gestureOnScreenDuration;
@@ -34,19 +28,14 @@
 @property (assign, nonatomic) CGFloat gestureAnimationDurationOut;
 
 /**
-
  Show the gesture guides on screen one by one if they are enabled for the key passed.
-
  @param gestures An array of the available string constants representing types of gesture, eg. @[RCHGesturePinch, RCHGestureTap]
  @param key This should be a unique key for the name of the interface eg. @"ProductViewController"
- 
  */
 + (void)showGestures:(NSArray *)gestures forKey:(NSString *)key;
 
 /**
-  
  Resets all gestures so they will all be shown again until the user dismisses them, by pressing the stop showing button.
- 
 */
 + (void)reset;
 
