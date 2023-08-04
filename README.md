@@ -29,9 +29,3 @@ If any designers out there want to create an icon set for me that can be shared 
 ## Screenshot
 
 ![Showing Gestures](https://raw.github.com/robinhayward/RCHGestureGuide/master/screenshots/screenshot.png)
-
-## Contact
-
-[@robhayward](http://www.twitter.com/robhayward) 
-
-<hello@robhayward.co.uk>
